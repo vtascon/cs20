@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* CSS Document */
+setlist {
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	color: #fff;
+	background-color: #232323;
+	width: 85%;
+	margin: auto;
+	text-align: center;
+	border: solid #fff;
+	border-radius: 20px;
+}
+
+heading {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	display: block;
+	margin-bottom: 20pt;
+    margin-left: 5px;
+	padding: 10px;
+	font-size: 30px;
+	text-decoration: underline;
+	
+}
+song {
+	display: block;
+    margin-bottom: 30pt;
+    margin-left: 10px;
+}
+
+title {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	display: block;
+    color: #749AEF;
+    font-size: 16pt;
+}
+
+artist {
+	display: block;
+	font-size: 18px;
+	font-style: oblique;
+	color:#C8D9FF;
+		
+}
+
+genre {
+	display: block;
+}
+
+year {
+	color:#BFBFBF;
+	font-size: 14px;
+}

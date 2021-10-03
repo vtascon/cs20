@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="setlist.css"?>
+<setlist>
+	<heading> Coverband Setlist </heading>
+	<song>
+		<title>The Man Who Sold The World</title> 
+		<artist>Nirvana</artist>
+		<genre>Rock</genre>
+		<year>1994</year>
+	</song>
+	<song>
+		<title>All Apologies</title> 
+		<artist>Nirvana</artist>
+		<genre>Rock</genre>
+		<year>1993</year>
+	</song>
+	<song>
+		<title>Eleanor Rigby</title> 
+		<artist>The Beatles</artist>
+		<genre>Rock</genre>
+		<year>1966</year>
+	</song>
+	<song>
+		<title>Hey Jude</title> 
+		<artist>The Beatles</artist>
+		<genre>Rock</genre>
+		<year>1968</year>
+	</song>
+	<song>
+		<title>Gold Dust Woman</title> 
+		<artist>Fleetwood Mac</artist>
+		<genre>Rock</genre>
+		<year>1976</year>
+	</song>
+	<song>
+		<title>Money</title> 
+		<artist>Pink Floyd</artist>
+		<genre>Rock</genre>
+		<year>1973</year>
+	</song>
+	<song>
+		<title>Wish You Were Here</title> 
+		<artist>Pink Floyd</artist>
+		<genre>Progressive rock</genre>
+		<year>1975</year>
+	</song>
+	<song>
+		<title>Can't Stop</title> 
+		<artist>Red Hot Chili Peppers</artist>
+		<genre>Alternative/Indie</genre>
+		<year>2002</year>
+	</song>
+	<song>
+		<title>Breezeblocks</title> 
+		<artist>Alt-J</artist>
+		<genre>Alternative/Indie</genre>
+		<year>2012</year>
+	</song>
+	<song>
+		<title>Stolen Dance</title> 
+		<artist>Milky Chance</artist>
+		<genre>Indie pop</genre>
+		<year>2013</year>
+	</song>
+	<song>
+		<title>Lay All Your Love On Me</title> 
+		<artist>ABBA</artist>
+		<genre>Pop</genre>
+		<year>1981</year>
+	</song>
+	<song>
+		<title>Soon We'll Be Found</title> 
+		<artist>Sia</artist>
+		<genre>Pop</genre>
+		<year>2008</year>
+	</song>
+</setlist>
