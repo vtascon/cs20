@@ -79,6 +79,7 @@ body{
 
 .contact-box{
 	max-width: 850px;
+	min-width: 400px;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	margin-top: 90px;
