@@ -15,7 +15,7 @@ heading {
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	display: block;
 	margin-bottom: 20pt;
-    margin-left: 5px;
+    	margin-left: 5px;
 	padding: 10px;
 	font-size: 30px;
 	text-decoration: underline;
@@ -23,15 +23,15 @@ heading {
 }
 song {
 	display: block;
-    margin-bottom: 30pt;
-    margin-left: 10px;
+    	margin-bottom: 30pt;
+    	margin-left: 10px;
 }
 
 title {
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	display: block;
-    color: #749AEF;
-    font-size: 16pt;
+    	color: #749AEF;
+    	font-size: 16pt;
 }
 
 artist {
