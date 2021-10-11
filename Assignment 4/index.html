@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	
+	
+<head> <! start head-->
+	
+	<meta charset="UTF-8">
+	<title>Joe's Hotdogs</title>
+	<link rel="stylesheet" href="style.css">
+	
+</head> <! end head-->
+
+	
+	
+<body>
+	
+	<header class="header">
+		
+		<h1> Joe's Hotdog Stand</h1>
+		
+	</header>
+	
+	
+	<script> //Javascript
+		
+		var hotdogs = parseInt(prompt("How many hotdogs would you like?"));
+		var fries = parseInt(prompt("How many French Fries would you like?"));
+		var drinks = parseInt(prompt("How many drinks would you like?"));
+		var itemsOrdered = hotdogs + fries + drinks;
+		
+		//Items Ordered
+		document.write("<div style='border:solid 8px #CE272B; padding:1em; width: 480px; border-radius: 10px; background-color: #FFFFFF'>");
+		
+		document.write("<div style='font-weight: bold'>" + "Items Ordered: " + itemsOrdered);
+		document.write("<br>");
+		
+		//Quantities
+		document.write("Quantities: " + hotdogs + " Hotdog(s), " + fries + " French Fries, " + drinks + " Drink(s)" );
+		document.write("<br>");
+	
+	
+		
+		//Subtotal
+		var hcost = 3.75;
+		var ffcost = 2.00;
+		var dcost = 1.50;
+		
+		var subtotal = (hotdogs * hcost) + (fries * ffcost) + (drinks * dcost);
+		
+		document.write(" Subtotal: $" + subtotal.toFixed(2));
+		document.write("<br>");
+		
+		
+		//Discount & Tax & Total
+		
+		//Discount Variables
+		var discount = subtotal * 0.10;
+		var finalDiscount = subtotal - discount;
+		
+		//Tax Variables
+		var tax = 0.0625;
+		var taxDiscount = finalDiscount * tax;
+		var taxNoDis = subtotal * tax;
+		
+		//Total Variables
+		var totalDiscount = finalDiscount + taxDiscount;
+		var totalNoDis = subtotal + taxNoDis;
+	
+		
+		if (subtotal >= 20) {
+			document.write(" Discount (10%): $-" + discount.toFixed(2));
+			document.write("<br>");
+			document.write(" Tax: $" + taxDiscount.toFixed(2));
+			document.write("<br>");
+			document.write(" Total: $" + totalDiscount.toFixed(2));
+			document.write("<br>");
+			
+		} else {
+			document.write(" Discount: Not Applicable");
+			document.write("<br>");
+			document.write(" Tax: $" + taxNoDis.toFixed(2));
+			document.write("<br>");
+			document.write(" Total: $" + totalNoDis.toFixed(2));
+			document.write("<br>");
+		}
+	
+	</script>
+		
+</body>
+	
+	
+</html>
