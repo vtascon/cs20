@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+	
+<head> <! start head-->
+	
+	<meta charset="UTF-8">
+	<title>Lottery Simulator</title>
+	<link rel="stylesheet" href="style.css">
+	
+</head> <! end head-->
+
+	
+<body> <! start body-->
+	
+	<header class="title">
+		
+		<h1> Lottery Simulator </h1>
+		
+	</header>
+	
+	
+	<script> //Javascript
+	
+		// Inputs—Prompt user
+		var winningnum = prompt("Enter winning numbers: ", "5 15 21 32 45");
+		var winluckynum = parseInt(prompt("Enter Lucky Ball number: ", "6"));		
+		var arr2 = winningnum.match(/\d+/g);
+		
+		
+		// 5 unique numbers — your picks
+		var arr1 = [];
+		while(arr1.length < 5){
+    		var r = Math.floor(Math.random() * 48) + 1;
+    		if(arr1.indexOf(r) === -1) arr1.push(r);
+		}
+		
+		
+		// sorts array
+		arr1.sort(function(a, b) {
+  		return a - b;
+		});
+		console.log(arr1);
+		
+		// Lucky ball
+		const luckyball = Math.floor(Math.random() * 18) + 1;
+    	console.log(luckyball);
+		
+		
+ 
+		// Matching numbers	 
+		function arrayMatch(arr1, arr2) {
+		    var arr = []; // Array with match elements
+		  for(var i=0 ; i<arr1.length ; ++i) {
+			for(var j=0 ; j<arr2.length ; ++j) {
+			  if(arr1[i] == arr2[j]) {    // If element is in both the arrays
+				arr.push(arr1[i]);        // Push to arr array
+			  }
+			}
+		  }
+		  return arr; // Return the arr elements
+		}
+		console.log(arrayMatch(arr1, arr2));     
+		var matches = arrayMatch(arr1, arr2).length;
+		      
+		
+		
+		//Outputs
+		document.write("<div style='border:solid 5px #186293; padding:1em; width: 400px; border-radius: 10px; background-color: #FFFFFF'>");
+	    //5 numbers + lucky #
+		document.write("Random Pick: " + arr1 + "  (Lucky Ball: " + luckyball + ")");
+		document.write("<br>"); 
+		
+		// Winning numbers
+		document.write("Winning numbers: " + arr2 + "  (Lucky Ball: " + winluckynum + ")");
+		document.write("<br>");
+		
+		// How many matches
+		if (matches > 0) {
+			document.write("Matching Numbers: " + matches);
+			document.write("<br>");
+		} else {
+		   document.write("No Matching Numbers.");
+		   document.write("<br>");
+		}
+		
+		
+		// Matching Lucky ball
+		var luckymatch = 0; //Initializing
+		
+		if (luckyball == winluckynum) {
+			 
+			luckymatch = 1;
+			document.write("Lucky Numbers Match!");
+			document.write("<br>");
+			
+		} else {
+			document.write("Lucky Ball does NOT match.");
+			document.write("<br>");
+		}
+		 
+		 
+		// Winnings
+		var payout = 0;
+		
+		if (luckymatch == 1) {
+			if (matches == 0){
+				payout = 4;
+			}
+			if (matches == 1){
+				payout = 6;
+			}
+			if (matches == 2){
+				payout = 25;
+			}
+			if (matches == 3){
+				payout = 150;
+			}
+			if (matches == 4){
+				payout = 5000;
+			}
+			if (matches == 5){
+				payout = 7000;
+			}
+		} else {
+			if (matches == 2){
+				payout = 3;
+			}
+			if (matches == 3){
+				payout = 20;
+			}
+			if (matches == 4){
+				payout = 200;
+			}
+			if (matches == 5){
+				payout = 25000;
+			}
+		}
+		
+		if (payout == 7000){
+			document.write("Your Winnings: $" + payout + " a WEEK for LIFE");
+		} else if (payout == 25000) {
+			document.write("Your Winnings: $" + payout + " a YEAR for LIFE");
+		} else {
+			document.write("Your Winnings: $" + payout);
+		}	
+		 
+	</script>
+	
+</body> <! end body-->
+	
+</html>
