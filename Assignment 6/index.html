@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+	
+<head> <!-- start head-->
+	
+	<meta charset="UTF-8">
+	<title>Amicable Numbers</title>
+	<link rel="stylesheet" href="style.css">
+	
+	
+</head> <!-- end head-->
+
+<body> <!-- start body-->
+	
+	<header> 
+		<h1> Amicable Numbers </h1>
+		<h4> Type in 2 numbers to see if they are amicable!</h4>
+	</header>
+	
+	<form name="amicable"> 
+		Number 1: <input type="text" name= "txtnum1" style="background: #fff; border-radius: 10px; border-color:#849FF4">
+		<br>
+		<br>
+		Number 2: <input type="text" name= "txtnum2" style="background: #fff; border-radius: 10px; border-color:#849FF4">
+		<br>
+		<br>
+		<input type="button" value="Calculate" onclick="amicableNum()" style="background: #849FF4; color: #fff; border-radius: 10px; width: 150px; font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'; font-size: 18px; border-color:#849FF4">
+		<br>
+		<br>
+		Result: <div id="result" style="background: #fff"> </div>
+		
+	</form>
+	
+	
+	<script> //Javascript
+	
+		function amicableNum() {
+			
+			var num1, num2, result;
+			var arr1 = [];
+			var arr2 = [];
+			
+			num1=Number(document.amicable.txtnum1.value);
+			num2=Number(document.amicable.txtnum2.value);
+			
+			// Array 1
+			for(let i = 1; i < num1; i++) {
+
+				// check for factors
+				if(num1 % i == 0) {
+					console.log(i);
+					var r = i;
+					if(arr1.indexOf(r) === -1) arr1.push(r);
+				}
+			}
+			
+			// Array 2
+			for(let i = 1; i < num2; i++) {
+
+				// check for factors
+				if(num2 % i == 0) {
+					console.log(i);
+					var r = i;
+					if(arr2.indexOf(r) === -1) arr2.push(r);
+				}
+			}
+			
+			// Sum of values of Array 1
+			let sum1 = 0;	
+			for (let i = 0; i < arr1.length; i++) {
+				sum1 += arr1[i];
+			}
+			console.log(sum1);
+			
+			
+			// Sum of values of array 2
+			let sum2 = 0;
+			for (let i = 0; i < arr2.length; i++) {
+				sum2 += arr2[i];
+			}
+			console.log(sum2);
+			
+			
+			if (sum1 == num2 && sum2 == num1){
+				result= "The numbers: " + num1 + " and " + num2 + " are amicable.";
+			} else{
+				result= "The numbers: " + num1 + " and " + num2 + " are NOT amicable.";
+			}
+			
+			//result= num1 + num2;
+			//document.amicable.txtresult.value=result;
+			document.getElementById('result').innerHTML = result;
+			alert( num1 + " factors: " + arr1 + " \n" + num2 + " factors: " + arr2);
+		
+			
+		} //end of function
+		
+		
+
+	</script>
+	
+</body> <!-- end body-->
+	
+	
+</html>
