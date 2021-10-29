@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<title>Jade Delight</title>
+	<link rel="stylesheet" href="style.css">
+	
+	
+	
+</head>
+
+<body> <!-- start body -->
+	
+	<script language="javascript"> //start script 1
+
+		//Table item name and cost each
+		function MenuItem(name, cost) {
+			this.name = name;
+			this.cost= cost;
+		}
+
+		menuItems = new Array(
+			new MenuItem("Chicken Chop Suey", 4.5),
+			new MenuItem("Sweet and Sour Pork", 6.25),
+			new MenuItem("Shrimp Lo Mein", 5.25),
+			new MenuItem("Moo Shi Chicken", 6.5),
+			new MenuItem("Fried Rice", 2.35)
+		);
+
+		//Makes table	
+		function makeSelect(name, minRange, maxRange) {
+			var t= "";
+			t = "<select name='" + name + "' size='1'>";
+			for (j=minRange; j<=maxRange; j++)
+			   t += "<option>" + j + "</option>";
+			t+= "</select>"; 
+			return t;
+		}
+
+
+
+		//Toggle between pickup and delivery javascript
+		window.onload = function() {
+			document.getElementById('ifNo').style.display = 'none';
+		}
+		function yesnoPickup() {
+			if (document.getElementById('yesPickup').checked) {
+				document.getElementById('ifNo').style.display = 'none';
+
+			} 
+			else if(document.getElementById('noPickup').checked) {
+				document.getElementById('ifNo').style.display = 'block';
+		   }
+		}
+
+	</script> <!-- end script 1-->
+
+
+	<h1>Jade Delight</h1> <!-- header -->
+
+
+	<form name="data" style="background: #fff"> <!-- start form 1-->
+	
+		<p style="background: #fff; text-align: left">First Name: <input type="text"  name="fname" style="background: #fff; width: 400px; border-radius: 10px; border-color:#247A30; "/></p>
+		<p style="background: #fff; text-align: left">Last Name*:  <input type="text"  name="lname" style="background: #fff; width: 400px; border-radius: 10px; border-color:#247A30"/></p>
+
+		<div id="ifNo" style="display:none; background: #fff; text-align: left"> 
+			<p style="background: #fff; text-align: left">Street*: <input type="text"  name="street" style="background: #fff; width: 400px; border-radius: 10px; border-color:#247A30"/></p>
+			<p style="background: #fff; text-align: left">City*: <input type="text"  name="city" style="background: #fff; width: 400px; border-radius: 10px; border-color:#247A30"/></p>
+		</div>
+
+		<p style="background: #fff; text-align: left">Phone*: <input type="text"  name="phone" style="background: #fff; width: 400px; border-radius: 10px; border-color:#247A30"/></p>
+
+		<input type="radio" onclick="javascript:yesnoPickup();" name="p_or_d" id="yesPickup" value="pickup" checked="checked" style="width: 150px; text-align: left" /> Pickup
+		<input type="radio" onclick="javascript:yesnoPickup();" name="p_or_d" id="noPickup" value="delivery" style="width: 150px; text-align: left" /> Delivery
+		<br>	
+
+
+		<table border="0" cellpadding="3" style="border: solid #38AD48; padding-right: 20px"> <!-- start table -->
+			
+			<tr>
+				<th>Select Item</th>
+				<th>Item Name</th>
+				<th>Cost Each</th>
+				<th>Total Cost</th>
+			</tr>
+
+			<script language="javascript"> //start script 2
+
+				$('body').on('change', updateCosts);
+
+				var s = "";
+				for (i=0; i< menuItems.length; i++) { 
+					 //Select item formatting; concatenation
+					 s += "<tr><td>";
+					 s += makeSelect("quan" + i, 0, 10); //select item
+					 s += "</td><td>" + menuItems[i].name + "</td>"; //item name
+					 s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>"; // cost each
+					 s += "<td> $ <input type='text' name='cost'/></td></tr>"; //total cost
+				}
+				document.writeln(s);
+
+
+
+				var selectItem = document.getElementsByTagName("select");
+				var costs = document.getElementsByName("cost");
+
+				function updateCosts(){
+
+					//updates total cost fields based on select item quantity
+					for (i=0; i < menuItems.length; i++) {
+
+						console.log("cost: " + costs[i]);
+						console.log("menu items: " + menuItems[i].cost);
+						console.log("select items: " + selectItem[i].value);
+
+						var total = menuItems[i].cost * selectItem[i].value;
+						costs[i].value = total.toFixed(2);
+
+					}
+
+					var subtotal = 0;
+
+					for (i=0; i < menuItems.length; i++) {
+						subtotal += parseFloat(costs[i].value);	
+					}
+
+					//subtotal, mass tax, total
+					document.getElementById("subtotal").value = subtotal.toFixed(2);
+					document.getElementById("tax").value = parseFloat(subtotal * 0.0625).toFixed(2);
+					document.getElementById("total").value = parseFloat(subtotal * 1.0625).toFixed(2);
+
+				}
+
+			</script> <!-- end script 2-->
+
+
+		</table> <!-- end table -->
+
+
+		<!-- Totals -->
+		<p style="background: #fff">Subtotal: 
+		   $  <input type="text"  name="subtotal" id="subtotal" style="background: #fff; width:400px; border-radius: 10px; border-color:#247A30"/>
+		</p>
+		<p style="background: #fff">Mass tax 6.25%:
+		  $ <input type="text"  name="tax" id="tax" style="background: #fff; width: 400px; border-radius: 10px; border-color:#247A30"/>
+		</p>
+		<p style="background: #fff">Total: $ <input type="text"  name="total" id="total" style="background: #fff; width: 400px; border-radius: 10px; border-color:#247A30"/>
+		</p>
+		<div class= "submit" style="text-align: center; background: #fff;">
+		<input type ="button" value = "Submit Order" onclick="validate()" style="background: #247A30; color: #fff; border-radius: 10px; width: 200px; text-align: center; font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman',
+		'serif';font-size: 18px">
+		</div>
+		
+
+		
+		
+		
+		
+		<script> 
+			
+		// Validation function + display final message 
+		function validate() {
+			
+			// Validates pickup items
+			if (document.getElementById('yesPickup').checked) {
+				
+				
+				if (checkNamePhone() === true) {
+					
+					if (oneItemOrdered() === true) {
+	
+						var time = orderTime();
+						alert("Thank you for your order!\n" + "Your Pickup Time: " + time + "\nYour Total: $" 
+							  + document.getElementById('total').value); 	
+					}
+				}
+				
+			// Validates delivery items	
+			} else if (document.getElementById('noPickup').checked) {
+				
+				
+				if (checkEdgeCases() === true ) {
+					
+					if ((checkNamePhone() === true) && (checkAddress() === true)) {
+						
+						if(oneItemOrdered() === true) {
+							
+							var time = orderTime();
+							
+							alert("Thank you for your order!\n" + "Your Delivery Time: " + time + "\nYour Total: $" 
+							  + document.getElementById('total').value); 
+						}
+						
+					}	
+				}
+			}
+		}
+		
+			
+			
+			
+			
+		// Ensures user put in a last name and phone number	
+		function checkNamePhone() {
+			
+			if ((document.data.lname.value == "") && (document.data.phone.value == "")) {
+				//both last name and phone#
+				alert("Please enter a Last Name and a Phone Number")	
+				return false;
+					
+			} else if (document.data.lname.value == "") { //last name
+				
+				if (document.getElementById('noPickup').checked) {
+					
+					if ((document.data.street.value == "") && (document.data.city.value == "")) {
+						alert("Please enter a Last Name, Street, and City");
+						return false;
+					} else if (document.data.street.value == "") {
+						alert("Please enter a Last Name and Street");
+						return false;
+					} else if (document.data.city.value == "") {
+						alert("Please enter a Last Name and City");
+						return false;
+					}
+				}
+				
+				alert("Please enter a Last Name"); 
+				document.data.lname.select();
+				document.data.lname.className += ' required';
+				return false; 
+					
+			} else if (document.data.phone.value == ""){ //phone #
+				
+				if ((document.data.street.value == "") && (document.data.city.value == "")) {
+						alert("Please enter a Phone Number, Street, and City");
+						return false;
+					} else if (document.data.street.value == "") {
+						alert("Please enter a Phone Number and Street");
+						return false;
+					} else if (document.data.city.value == "") {
+						alert("Please enter a Phone Number and City");
+						return false;
+					}
+				
+				alert("Please enter a phone number");
+				document.data.phone.select();
+				document.data.phone.className += ' required';
+				return false;
+					
+			} else {
+				
+				if (validPhone()) { //check phone# validity
+				 return true;
+				}
+			 
+			}
+		}
+		
+			
+			
+			
+			
+		// returns false if phone is not valid
+		function validPhone() {
+			
+			var input = document.data.phone.value;
+			var phoneOne = /^\d{10}$/;
+			var phoneTwo = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+			
+			if (input.match(phoneOne)){
+		  		return true;
+			} else if (input.match(phoneTwo)){
+		  		return true;
+			} else {
+				alert("Please enter a valid phone number!");
+				return false;
+			}
+			console.log(document.data.phone.value);
+		}	
+			
+			
+			
+			
+			
+		// Ensures user input a street and city	
+		function checkAddress() {
+			
+			if ((document.data.street.value == "") && (document.data.city.value == "")) {
+				
+				alert("Please enter a Street and a City")	
+				return false;
+				
+			} else if (document.data.street.value == ""){
+				
+				alert("Please enter a Street"); 
+				document.data.street.select();
+				document.data.street.className += ' required';
+				return false; 
+				
+			} else if (document.data.city.value == "") {
+				alert("Please enter a City"); 
+				document.data.city.select();
+				document.data.city.className += ' required';
+				return false;	   
+			} else {
+				return true;
+			}
+		}
+		
+			
+			
+			
+			
+		// Checks for cases not covered in the previous functions	
+		function checkEdgeCases() {
+			if ((document.data.lname.value == "") && (document.data.phone.value == "") && 
+				(document.data.street.value == "") && (document.data.city.value == "")){
+				alert("Please enter a Last Name, Phone Number, Street, and City"); 
+				return false;
+			} else if ((document.data.lname.value == "") && (document.data.phone.value == "")){
+				if (document.data.street.value == "") {
+					alert("Please enter a Last Name, Phone Number, and Street");
+					return false;
+				} else if (document.data.city.value == ""){
+					alert("Please enter a Last Name, Phone Number, and City");
+					return false;
+				} else {
+					return true;
+				}
+					
+			} 
+			
+			else {
+			return true;
+			}
+		}
+		
+			
+			
+			
+		// Determines pickup and delivery time	
+		function orderTime() {
+					
+			var time = new Date();
+			console.log(time.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric'})); 
+
+			if (document.getElementById('yesPickup').checked) {	
+				var minutesToAdd=15;
+
+			} else if (document.getElementById('noPickup').checked) {
+				var minutesToAdd=30;
+			}
+
+
+			var dt = new Date();
+			var hours = dt.getHours();
+			var AmOrPm = hours >= 12 ? 'pm' : 'am';
+			hours = (hours % 12) || 12;
+			var minutes = dt.getMinutes() + minutesToAdd;
+			
+			if (minutes >= 60) {
+				hours += 1;
+				if (minutes <10) {
+					minutes = "0" + minutes;
+				}
+			}
+			
+			var finalTime = hours + ":" + minutes + " " + AmOrPm;
+			return finalTime;
+			
+		}
+			
+			
+			
+		
+		// Ensures at least one item has been ordered	
+		function oneItemOrdered() {
+			
+			if (document.getElementById('total').value == 0) {
+				alert("At least one item must be ordered!");
+			} else {
+			return true; 
+			}
+		}
+		
+
+		</script>
+
+</form>
+	
+</body>
+	
+</html>
