@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/* CSS Document */
+.required {
+    color: #000000;
+    border:1px solid red;
+	
+}
+
+* {
+	
+	background: #AAF4B2;
+	width: 85%;
+	margin: auto;
+	margin-top: 10px;
+	padding: 10px;
+	padding-bottom: 10px;
+}
+
+h1 {
+	
+	border: solid #1C5423 10px;
+	border-radius: 20px;
+	padding-bottom: 25px;
+	padding-top: 20px;
+	padding-left: 20px;
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+	background: #57B461;
+	text-align: center;
+	width: 40%;
+	margin: auto;
+	color: #FFFFFF;
+}
+
+form {
+	border: solid #247A30 5px;
+	padding: 18px;
+	border-radius: 5px;
+	font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+	background: #fff;
+}
+
