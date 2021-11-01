@@ -1,5 +1,4 @@
-{
-   "songs": [
+ [
       {
          "title": "The Man Who Sold The World",
          "artist": "Nirvana",
@@ -72,5 +71,4 @@
          "genres": ["Pop", "Alternative/Indie", "Dance/Electronic"],
          "year": 2008
       }
-   ]
-}
+ ]
