@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	
+<head>
+	<meta charset="UTF-8">
+	<title>JSON Setlist</title>
+	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	
+</head>
+
+<body>
+	
+	<form id="form1">
+		<p> 
+			<label for="genres"> Music Genre </label>
+			<select id="genres" name="genres">
+			  <option value="volvo">Volvo</option>
+			  <option value="saab">Saab</option>
+			  <option value="fiat">Fiat</option>
+			  <option value="audi">Audi</option>
+			</select>
+			
+		</p>
+	
+	</form>
+	
+	<script language="javascript"> 
+		
+	$.get( "https://vtascon.github.io/cs20/Assignment%208/songs.json", //gets data from online json file
+
+		// PART 2: Displays json data as raw string
+		function( data ) {
+			str = JSON.stringify(data);
+			document.write("Raw String: <br/> <br/>")
+			document.write(str +"<br/>");
+		
+		
+		// PART 3: Displays all data in user friendly format
+		document.write("<br/> <br/>" + "Coverband Setlist: " + "<br/>");
+		strHTML= "<ul>";
+		data.forEach(function(setlist) { 
+		strHTML += "<li>" 
+			  	+ setlist.title + "<br/>" 
+				+ "Artist: " + setlist.artist + "<br/>"
+				+ "Genre(s): " + setlist.genres + "<br/>"
+				+ "Year of Release: " + setlist.year + "</li> <br/> <br/>";
+			}) 
+		strHTML += "</ul>";
+		document.write(strHTML);
+		
+		}
+	)
+	
+	</script>
+	
+	
+</body>
+	
+</html>
