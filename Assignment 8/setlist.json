@@ -59,19 +59,19 @@
          "title": "Stolen Dance",
          "artist": "Milky Chance",
          "genres": ["Indie Pop", "Folktronica", "Psychedelic folk", "Pop"],
-         "year": "2013"
+         "year": 2013
       },
       {
          "title": "Lay All Your Love On Me",
          "artist": "ABBA",
          "genres": "Pop",
-         "year": "1981"
+         "year": 1981
       },
       {
          "title": "Soon We'll Be Found",
          "artist": "Sia",
          "genres": ["Pop", "Alternative/Indie", "Dance/Electronic"],
-         "year": "2008"
+         "year": 2008
       }
    ]
 }
