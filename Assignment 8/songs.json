@@ -2,25 +2,25 @@
       {
          "title": "The Man Who Sold The World",
          "artist": "Nirvana",
-         "genres": ["Rock", " gggGrunge"," Alternative Rock"," Alternative/Indie"],
+         "genres": ["Rock", "  Grunge","  Alternative Rock","  Alternative/Indie"],
          "year": 1994
       },
       {
          "title": "All Apologies",
          "artist": "Nirvana",
-         "genres": ["Grunge","Alternative/Indie"],
+         "genres": ["Grunge","  Alternative/Indie"],
          "year": 1993
       },
       {
          "title": "Eleanor Rigby",
          "artist": "The Beatles",
-         "genres": ["Rock","Musica Pop"],
+         "genres": ["Rock","  Musica Pop"],
          "year": 1966
       },
       {
          "title": "Hey Jude",
          "artist": "The Beatles",
-         "genres": ["Rock", "Pop Rock"],
+         "genres": ["Rock", "  Pop Rock"],
          "year": 1968
       },
       {
@@ -38,25 +38,25 @@
       {
          "title": "Wish You Were Here",
          "artist": "Pink Floyd",
-         "genres": ["Progressive Rock", "Experimental Rock","Art Rock"],
+         "genres": ["Progressive Rock", "  Experimental Rock","  Art Rock"],
          "year": 1975
       },
       {
          "title": "Can't Stop",
          "artist": "Red Hot Chili Peppers",
-         "genres": ["Alternative/Indie", "Rock"],
+         "genres": ["Alternative/Indie", "  Rock"],
          "year": 2002
       },
       {
          "title": "Breezeblocks",
          "artist": "Alt-J",
-         "genres": "Alternative/Indie",
+         "genres": "  Alternative/Indie",
          "year": 2012
       },
       {
          "title": "Stolen Dance",
          "artist": "Milky Chance",
-         "genres": ["Indie Pop", "Folktronica", "Psychedelic folk", "Pop"],
+         "genres": ["Indie Pop", "  Folktronica", "  Psychedelic folk", "  Pop"],
          "year": "2013"
       },
       {
@@ -68,7 +68,7 @@
       {
          "title": "Soon We'll Be Found",
          "artist": "Sia",
-         "genres": ["Pop", "Alternative/Indie", "Dance/Electronic"],
+         "genres": ["Pop", "  Alternative/Indie", "  Dance/Electronic"],
          "year": 2008
       }
  ]
