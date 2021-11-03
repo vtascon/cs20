@@ -2,58 +2,167 @@
 <html>
 	
 <head>
-	<meta charset="UTF-8">
 	<title>JSON Setlist</title>
-	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	<meta charset="utf-8"/>
+	<script>
+		function loadMessages() {
+
+			//Make request
+			request = new XMLHttpRequest();
+			console.log("1: created request");
+ 
+			//Open the JSON file at remote location
+			request.open("GET", "https://vtascon.github.io/cs20/Assignment%208/songs.json", true);
+			console.log("2: open success");
+ 	
+			//Callback for when HTTP response is returned
+			request.onreadystatechange = function() {
+				console.log("3:  event fired");
+			
+ 
+				if (request.readyState == 4 && request.status == 200) {
+
+					console.log("5:  data is ready");
+					theData = request.responseText;
+					
+					strHTML = theData;
+					data = JSON.parse(theData);
+				
+					strHTML= "<ul>" + "Raw String: <br/>" + theData + "<br/> <br/> ";  //Displays data as raw string
+					
+					//Displays setlist in user-friendly manner
+					data.forEach(function(setlist) { 
+					strHTML += "<li>" 
+						
+							+ setlist.title + "<br/>" 
+							+ "Artist: " + setlist.artist + "<br/>"
+							+ "Genre(s): " + setlist.genres + "<br/>"
+							+ "Year of Release: " + setlist.year + "</li> <br/> ";
+						}) 
+					strHTML += "</ul>";	
+					document.getElementById("messages").innerHTML =strHTML;
+					
+				}
+				else if (request.readyState == 4 && request.status != 200) {
+					document.getElementById("messages").innerHTML = "Whoops, something went terribly wrong!";
+				}
+
+				else if (request.readyState == 3) {
+					console.log("6:  ready state 3- request received,data being sent");
+					document.getElementById("messages").innerHTML = "Come back soon!";
+				}
+
+			}//end on readystate change
 	
+		//Fire off the HTTP request
+			request.send();
+			console.log("4 request sent");
+		}
+	</script>
+
+	<!-- Internal Style sheet -->
+	<style> 
+		body{
+			background-color: #C1D2F8;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+		}
+	</style>
+
 </head>
 
-<body>
-	
-	<form id="form1">
-		<p> 
-			<label for="genres"> Music Genre </label>
-			<select id="genres" name="genres">
-			  <option value="volvo">Volvo</option>
-			  <option value="saab">Saab</option>
-			  <option value="fiat">Fiat</option>
-			  <option value="audi">Audi</option>
-			</select>
-			
-		</p>
-	
-	</form>
-	
-	<script language="javascript"> 
-		
-	$.get( "https://vtascon.github.io/cs20/Assignment%208/songs.json", //gets data from online json file
 
-		// PART 2: Displays json data as raw string
-		function( data ) {
-			str = JSON.stringify(data);
-			document.write("Raw String: <br/> <br/>")
-			document.write(str +"<br/>");
-		
-		
-		// PART 3: Displays all data in user friendly format
-		document.write("<br/> <br/>" + "Coverband Setlist: " + "<br/>");
-		strHTML= "<ul>";
-		data.forEach(function(setlist) { 
-		strHTML += "<li>" 
-			  	+ setlist.title + "<br/>" 
-				+ "Artist: " + setlist.artist + "<br/>"
-				+ "Genre(s): " + setlist.genres + "<br/>"
-				+ "Year of Release: " + setlist.year + "</li> <br/> <br/>";
-			}) 
-		strHTML += "</ul>";
-		document.write(strHTML);
-		
+<body onload="loadMessages()">
+
+	<h1>Coverband Setlist</h1>
+	<div id="messages">Loading...</div>
+
+
+	<!-- Form to filter songs by genre -->
+	<form>
+		<h2> Filter By Genre </h2>
+		<p> 
+			<label for="genres"> Music Genre: </label>
+			<select id="genreSelected">
+				<option value="Rock" id="Rock"> Rock</option>
+				<option value="Pop" id="Pop"> Pop</option>
+				<option value="Grunge" id="Grunge"> Grunge</option>
+				<option value="Alternative Rock" id="Alternative Rock"> Alternative Rock </option>
+				<option value="Alternative/Indie" id="Alternative/Indie"> Alternative/Indie</option>
+				<option value="Musica Pop" id="Musica Pop"> Musica Pop</option>
+				<option value="Pop Rock" id="Pop Rock"> Pop Rock</option>
+				<option value="Progressive Rock" id="Progressive Rock"> Progressive Rock</option>
+				<option value="Experimental Rock" id="Experimental Rock"> Experimental Rock</option>
+				<option value="Art Rock" id="Art Rock"> Art Rock</option>
+				<option value="Indie Pop" id="Indie Pop"> Indie Pop</option>
+				<option value="Folktronica" id="Folktronica">Folktronica </option>
+				<option value="Psychedelic folk" id="Psychedelic folk"> Psychedelic Folk</option>
+				<option value="Dance/Electronic" id="Dance/Electronic"> Dance/Electronic</option>
+				
+			</select>
+			<button type="button" onclick="displaySongs()"> Filter</button>
+
+			<br/>  
+		</p>
+
+	</form>
+
+
+	<!-- Function obtains JSON file and filters thorugh to find the genre selected by the user -->
+	<script>
+		function displaySongs() {
+			request = new XMLHttpRequest();
+			console.log("1: created request");
+
+			request.open("GET", "https://vtascon.github.io/cs20/Assignment%208/songs.json", true);
+			console.log("2: open success");
+			
+			request.onreadystatechange = function() {
+				console.log("3:  event fired");
+
+				if (request.readyState == 4 && request.status == 200) {
+
+					console.log("5:  data is ready");
+					theData = request.responseText;
+					
+					strHTML = theData; 
+					data = JSON.parse(theData);
+				
+					var genre = document.getElementById("genreSelected");
+					var value1 = genre.options[genre.selectedIndex].value;
+					console.log(value1);	
+
+					strHTML= "<ul>";
+					data.forEach(function(setlist) {
+						
+						for (let i=0; i<setlist.genres.length; i++) {
+							if (setlist.genres[i] == value1) {
+								strHTML += "<li>" 
+										+ setlist.title + "<br/>" 
+								strHTML += "</li>"
+
+							}
+						}	
+					})
+					strHTML += "</ul>";	
+					document.getElementById("messages").innerHTML =strHTML;
+
+					
+				}
+				else if (request.readyState == 4 && request.status != 200) {
+
+					document.getElementById("messages").innerHTML = "Whoops, something went terribly wrong!";
+
+				}
+				else if (request.readyState == 3) {
+
+					console.log("6:  ready state 3- request received,data being sent");
+					document.getElementById("messages").innerHTML = "Come back soon!";
+				}
+			}
+			request.send();
+			console.log("4 request sent");
 		}
-	)
-	
 	</script>
-	
-	
+
 </body>
-	
 </html>
