@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <title>Joe's Hotdogs Extra Credit</title>
+
+        <style>
+            * {
+                background-color: #FCF6CB;
+                margin: auto;
+            }
+            body {
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                
+            }
+            body h1{
+                text-align: center;
+                padding-top: 30px;
+                background-color: #FFD25B;
+            }
+            body h2{
+                text-align: center;
+                background-color: #FFD25B;
+                padding-bottom: 20px;
+            }
+            body h4 {
+                width: 72%;
+            }
+
+            body .header{
+                text-align: center;
+                
+                
+            }
+
+            body .totals {
+                text-align: right;
+                width: 72%;
+            }
+
+            body .submit {
+                text-align: right;
+                width: 72%;
+                
+            }
+
+            .form {
+                border: solid 5px;
+                border-radius: 30px;
+                width: 50%;
+                padding: 20px;
+                
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <script>
+
+            function MenuItem(item,cost) {
+                this.item = item;
+                this.cost = cost;
+            }
+
+            menuItems = new Array(
+                new MenuItem("Hotdogs", 3.75),
+                new MenuItem("French Fries", 2.00),
+                new MenuItem("Drinks", 1.50)
+            );
+
+            function makeSelect(name, minRange, maxRange) {
+                var t= "";
+                t = "<select name='" + name + "' size='1'>";    
+                for (j=minRange; j<=maxRange; j++)
+                t += "<option>" + j+ "</option>";
+                t += "<option>" + 10 + "</option>";
+                t += "<option>" + 15 + "</option>";
+                t += "<option>" + 20 + "</option>";
+                t+= "</select>"; 
+                return t;
+            }
+            
+        </script>
+
+        <header class="header">	
+            <h1> Joe's Hotdog Stand</h1>
+            <h2>Online Order Form</h2>
+            <br>
+            <p> Welcome to Joe's Hotdog Stand! Please complete our online order form and submit below.</p>	
+            <br>
+            <br>
+            
+        </header>
+
+        <form class="form">
+
+            <table cellpadding="8">
+                <tr>
+                    <th>Select Quantity</th>
+                    <th>Item</th>
+                    <th>Cost Each</th>
+                    <th>Total Cost</th>
+                </tr>
+
+                <script>
+
+                    $('body').on('change', updateCosts);
+
+                    var s = "";
+                    for (i=0; i< menuItems.length; i++) { 
+                        //Select item formatting; concatenation
+                        s += "<tr><td>";
+                        s += makeSelect("quan" + i, 0, 5); //select quantity
+                        s += "</td><td>" + menuItems[i].item + "</td>"; //item
+                        s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>"; // cost each
+                        s += "<td> $ <input type='text' name='cost'/></td></tr>"; //total cost
+                    }
+                    document.writeln(s);
+
+
+                    var selectItem = document.getElementsByTagName("select");
+                    var costs = document.getElementsByName("cost");
+
+                    function updateCosts(){
+
+                        //updates total cost fields based on select item quantity
+                        for (i=0; i < menuItems.length; i++) {
+
+                            console.log("cost: " + costs[i]);
+                            console.log("menu items: " + menuItems[i].cost);
+                            console.log("select items: " + selectItem[i].value);
+
+                            var total = menuItems[i].cost * selectItem[i].value;
+                            costs[i].value = total.toFixed(2);
+                        }
+
+                        var subtotal = 0;
+
+                        for (i=0; i < menuItems.length; i++) {
+                            subtotal += parseFloat(costs[i].value);	
+                        }
+
+                        //subtotal, mass tax, total
+                        document.getElementById("subtotal").value = subtotal.toFixed(2);
+
+                        if (document.getElementById("subtotal").value >= 20) {
+                            document.getElementById("discount").value = parseFloat(subtotal * 0.10).toFixed(2);
+                            document.getElementById("tax").value = parseFloat((subtotal - (subtotal * 0.10)) * 0.0625).toFixed(2);
+                            document.getElementById("total").value = parseFloat((subtotal - (subtotal * 0.10)) * 1.0625).toFixed(2);
+                            
+
+                        } else {
+                            document.getElementById("discount").value = 0;
+                            document.getElementById("tax").value = parseFloat(subtotal * 0.0625).toFixed(2);
+                            document.getElementById("total").value = parseFloat(subtotal * 1.0625).toFixed(2);
+                        }
+
+                        
+
+                    }
+
+                    //console.log("HERE: " + selectItem[1].value);
+
+            
+
+
+                </script>
+
+            </table>
+
+
+            <!-- Totals -->
+            <div class="totals"> 
+            <br> <br>    
+            <p>Subtotal: $  <input type="text"  name="subtotal" id="subtotal"/></p>
+            <p>Discount 10%: —$ <input type="text"  name="discount" id="discount" /></p>
+            <p>Mass tax 6.25%: $ <input type="text"  name="tax" id="tax"/></p>
+            
+            <p>Total: $ <input type="text"  name="total" id="total"/></p>
+            </div>
+            <br>
+
+            <div class= "submit">
+            <input type ="button" value = "Submit Order" onclick="validate()" 
+            style="border-radius:10px; border:solid 3px #CE272B; background-color: #CE272B; color: #Fff; width: 130px; height: 40px">
+            </div>
+            <br>
+
+            <h4> Order Details: </h4> <br> <div id="orderDetails" style="width: 60%"> </div>
+
+            <script>
+                function validate() {
+
+                  
+                   var subtotal = document.getElementById('subtotal').value;
+                   var discount = document.getElementById('discount').value;
+                   var tax = document.getElementById("tax").value;
+                   var total = document.getElementById('total').value;
+
+                   var hotdogs = parseInt(selectItem[0].value);
+                   var ff = parseInt(selectItem[1].value);
+                   var drinks = parseInt(selectItem[2].value);
+                   var items = hotdogs + ff + drinks; 
+
+                   var orderDetails= 
+                   
+                   "Items Ordered: "  + items + "<br/>" +
+                   
+                   "Quantities: " + selectItem[0].value + " Hotdog(s), " 
+                   + selectItem[1].value + " French Fries, " + selectItem[2].value + " Drinks" + "<br/>" + 
+
+                   "Subtotal: $" + subtotal + "<br/>" + 
+                   "Discount: -$" + discount + "<br/>" + 
+                   "Tax: $" + tax + "<br/>" +
+                   "Total: $" + total + "<br/> <br/> <br/>";
+
+                  
+                    if (oneItemOrdered() === true) {
+                        
+                        document.getElementById('orderDetails').innerHTML = orderDetails;
+                    
+                        alert("Thank you for your order!\n" + " Your Order Details are displayed at the bottom of the page."); 	
+                    }
+                }
+
+                function oneItemOrdered() {
+                
+                if (document.getElementById('total').value == 0) {
+                    alert("At least one item must be ordered!");
+                } else {
+                return true; 
+                }
+            }
+            </script>
+
+
+        </form>
+
+
+
+
+
+    </body>
+
+
+</html>
