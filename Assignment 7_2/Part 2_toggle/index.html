@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+	    <title>Jump</title>
+
+        <style>
+            * {
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+        </style>
+
+    </head>
+
+
+    <body>
+
+        <h1> Toggle Text </h1>
+        <p> Input text and then press Jump to toggle text! </p>
+        <form name="form1"> 
+            <input type="text"  name="text1" id="text1" placeholder="input text"/>
+            <input type ="button" id="jump" value = "JUMP >" onclick="toggle()">
+            <input type="text"  name="text2" id="text2" placeholder="input text"/>
+
+            <script>
+
+                function toggle() {
+
+                    var btn = document.getElementById("jump");
+                    var text1 = document.getElementById("text1").value;
+                    var text2 = document.getElementById("text2").value;
+
+                    //console.log(text1);
+
+                    if (btn.value == "JUMP >") {
+                        
+                        btn.value = "< JUMP"; //toggle jump value
+                        document.form1.text2.value = text1;
+                        document.form1.text1.value = text2;
+
+
+
+                    } else {
+                        btn.value = "JUMP >" ; //toggle jump value
+                        document.form1.text2.value = text1;
+                        document.form1.text1.value = text2;
+                    }
+
+                }
+
+            </script>
+
+        </form>
+        
+    </body>
+
+</html>
