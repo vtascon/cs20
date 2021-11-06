@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+	    <title>Checkboxoes</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <style>
+            * {
+                font-family:Georgia, 'Times New Roman', Times, serif;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1> Checkboxes</h1>
+
+        <input type="checkbox" id="checkall" onclick="ChangeLabel(this)"> 
+        <span id="checkall-unchecked" style="display:inline;">Check All</span>
+        <span id="checkall-checked" style="display:none">Uncheck All</span> 
+    
+
+        <div class="checkboxes">
+        <br>
+        <input type="checkbox" class="checkbox" id="first" name="first" value="first">
+        <label for="first"> First</label><br>
+        <input type="checkbox" class="checkbox" id="second" name="second" value="second">
+        <label for="second"> Second</label><br>
+        <input type="checkbox" class="checkbox" id="third" name="third" value="third">
+        <label for="third"> Third</label><br>
+        <input type="checkbox" class="checkbox" id="fourth" name="fourth" value="fourth">
+        <label for="fourth"> Fourth</label><br>
+        </div>
+
+        <script>
+
+        function ChangeLabel(all) {
+                var d = all.id;
+                if( all.checked )
+                {
+                    document.getElementById(d+"-checked").style.display = "inline";
+                    document.getElementById(d+"-unchecked").style.display = "none";
+                }
+                else
+                {
+                    document.getElementById(d+"-checked").style.display = "none";
+                    document.getElementById(d+"-unchecked").style.display = "inline";
+                }
+        }
+            
+
+
+
+        $(document).ready(function() {
+            
+            $("#checkall").change(function(){  
+            var checked = $(this).is(':checked');
+            
+                if(checked){
+
+                    $(".checkbox").each(function(){
+                        $(this).prop("checked",true);
+                    });
+
+                }else{
+
+                    $(".checkbox").each(function(){
+                        $(this).prop("checked",false);
+                    });
+
+                }
+            });
+        });
+        
+        
+        
+
+        </script>
+
+
+
+    </body>
+
+</html>    
